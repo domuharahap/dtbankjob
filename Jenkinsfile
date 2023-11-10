@@ -3,6 +3,7 @@ pipeline {
     label 'kubectl'
   }
   environment {
+    APP_NAME = "bankjob"
   }
   stages {
     stage('DT Deploy Event') {
