@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bankjob
+  name: bankjob
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bankjob
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bankjob
+    spec:
+      containers:
+      - image: domuharahap/bankjob:3
+        name: bankjob
+        resources: {}
+        env:
+          - name: DT_TAGS
+            value: "product=bankjob"
+          - name: DT_CUSTOM_PROP
+            value: "SERVICE_TYPE=BACKEND"
+status: {}
