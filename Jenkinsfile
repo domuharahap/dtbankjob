@@ -9,10 +9,8 @@ pipeline {
     stage('DT Deploy Event') {
       steps {
         container("curl") {
-          script {
-            //API to dynatrace here
-            echo "push deployment event here"
-          }
+          //API to dynatrace here
+          echo "push deployment event here"
         }
       }
     }
