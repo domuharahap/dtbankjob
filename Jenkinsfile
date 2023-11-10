@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('DT Deploy Event') {
       steps {
+        echo "run container curl"
         container("curl") {
           //API to dynatrace here
           echo "push deployment event here"
@@ -16,6 +17,7 @@ pipeline {
     }
     stage('Deploy New Version') {
       steps {
+        echo "run container kubectl"
         container('kubectl') {
           // kubectl apply here
           sh "kubectl -n dtdemo-usecase get all"
