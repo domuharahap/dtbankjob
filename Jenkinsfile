@@ -13,6 +13,7 @@ pipeline {
             echo "push deployment event here"
           }
         }
+      }
     }
     stage('Deploy New Version') {
       steps {
