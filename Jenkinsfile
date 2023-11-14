@@ -9,7 +9,7 @@ pipeline {
     stage('DT Deploy Event') {
       steps {
         echo "run container curl"
-        container("curl") {
+        container("jenkins-slave") {
           //API to dynatrace here
           echo "push deployment event here"
         }
