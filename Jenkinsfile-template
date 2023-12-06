@@ -1,16 +1,16 @@
 pipeline {
     agent {
         kubernetes {
-            inheritFrom 'jenkins-slave'
+            inheritFrom 'kubectl'
         }
     }
     stages {
         stage('Deploy') {
             steps {
-                container('jenkins-slave') {
+                container('kubectl') {
                     echo "run container kubectl"
                     // kubectl apply here
-                    //sh "kubectl -n devops-tools get all"
+                    sh "kubectl -n devops-tools get all"
                 }
             }
         }
