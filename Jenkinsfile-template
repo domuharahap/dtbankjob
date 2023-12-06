@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        label 'kubectl'
+        kubernetes {
+            inheritFrom 'kubectl'
+        }
     }
     stages {
         stage('Deploy') {
