@@ -6,6 +6,8 @@ pipeline {
             containerTemplate {
                 name 'kubectl'
                 image 'lachlanevenson/k8s-kubectl:latest'
+                commond: 'cat'
+                ttyEnabled: true
             }
         }
     }
