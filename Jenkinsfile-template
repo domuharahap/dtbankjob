@@ -6,8 +6,8 @@ pipeline {
             containerTemplate {
                 name 'kubectl'
                 image 'lachlanevenson/k8s-kubectl:latest'
-                command: 'cat'
-                ttyEnabled: true
+                command 'cat'
+                ttyEnabled true
             }
         }
     }
