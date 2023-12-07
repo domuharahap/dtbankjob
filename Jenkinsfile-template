@@ -1,7 +1,12 @@
 pipeline {
     agent {
         kubernetes {
-            inheritFrom 'kubectl'
+            defaultContainer 'jnlp'
+            //cloud 'kubernetes'
+            containerTemplate {
+                name 'kubectl'
+                image 'lachlanevenson/k8s-kubectl:latest'
+            }
         }
     }
     stages {
