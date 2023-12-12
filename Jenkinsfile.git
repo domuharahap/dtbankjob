@@ -1,0 +1,22 @@
+pipeline {
+  agent {
+    label 'kubegit'
+  }
+  stages {
+    stage('Update Deployment and Service specification') {
+      steps {
+        container('kubectl') {
+          echo "update deployment"
+        }
+      }
+    }
+    stage('Deploy to staging namespace') {
+      steps {
+        checkout scm
+        container('kubectl') {
+          sh "kubectl -n devops-tools get all"
+        }
+      }
+    }
+  }
+}
