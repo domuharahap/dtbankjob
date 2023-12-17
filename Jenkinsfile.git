@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'kubegit'
+    label 'kubegit || built-in'
   }
   stages {
     stage('Update Deployment and Service specification') {
