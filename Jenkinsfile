@@ -7,7 +7,7 @@ pipeline {
       steps {
         container('kubectl') {
           echo "update deployment"
-          echo "${env.BRANCH_NAME}"
+          echo "${GIT_BRANCH}"
           sh 'printenv'
         }
       }
