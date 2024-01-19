@@ -24,7 +24,7 @@ spec:
         resources: {}
         env:
           - name: DT_TAGS
-            value: "product=bankjob"
+            value: "app=bankjob"
           - name: DT_CUSTOM_PROP
             value: "SERVICE_TYPE=BACKEND, owner=cloud-team"
 status: {}
