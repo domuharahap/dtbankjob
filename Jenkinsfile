@@ -32,16 +32,17 @@ pipeline {
         }
         createDynatraceDeploymentEvent(
 					customProperties: [
-            [key: "dt.event.deployment.name", value:"${JOB_NAME} 1.0"],
+            [key: "dt.event.deployment.name", value:"${JOB_NAME}"],
             [key:"dt.event.deployment.version", value: "1.0"],
             [key:"dt.event.deployment.release_stage", value: "${GIT_BRANCH}" ],
             [key:"dt.event.deployment.release_product", value: "${JOB_NAME}"],
             [key:"dt.event.deployment.release_build_version", value: "${currentBuild.number}"],
             [key:"approver", value: "Dynatrace Team"],
+            [key: "dt.event.deployment.project​", value: "${JOB_NAME}"],
             [key:"dt.event.deployment.ci_back_link", value: "${JOB_URL}"],
             [key:"gitcommit", value: "${GIT_COMMIT}"],
-            [key:"change-request", value: "CR-x"],
-            [key:"dt.event.deployment.remediation_action_link", value: "https://no.remediation.url.com"],
+            [key:"change-request", value: "N/A"],
+            [key:"dt.event.deployment.remediation_action_link", value: "N/A"],
             [key:"dt.event.is_rootcause_relevant", value: "true"]
 
 					],
