@@ -32,14 +32,18 @@ pipeline {
         }
         createDynatraceDeploymentEvent(
 					customProperties: [
-						[key: 'JenkinsUrl', value: '${JOB_URL}'],
-						[key: 'BuildUrl', value: '${BUILD_URL}'],
-						[key: 'GitCommit', value: '${GIT_COMMIT}'],
-						[key: 'deploymentVersion', value: '${DEPLOY_VERSION}'],
-            [key: 'dt.event.deployment.project​', value: '${JOB_NAME}'],
-            [key: 'Project', value: '${JOB_NAME}'],
-            [key: 'dt.event.deployment.version​', value: '${currentBuild.number}']
-            //[key: 'dt.event.deployment.name​​', value: 'dt-orders service deployment']​
+            [key:"dt.event.deployment.name":"${JOB_NAME} ${DEPLOY_VERSION}"],
+            ["dt.event.deployment.version": "${DEPLOY_VERSION}"],
+            ["dt.event.deployment.release_stage": "${GIT_BRANCH}" ],
+            ["dt.event.deployment.release_product": "${JOB_NAME}"],
+            ["dt.event.deployment.release_build_version": "${currentBuild.number}"],
+            ["approver": "Dynatrace Team"],
+            ["dt.event.deployment.ci_back_link": "${JOB_URL}"],
+            ["gitcommit": "${GIT_COMMIT}"],
+            ["change-request": "CR-x"],
+            ["dt.event.deployment.remediation_action_link": "https://no.remediation.url.com"],
+            ["dt.event.is_rootcause_relevant": true
+
 					],
 					envId: 'Dynatrace Environment',
 					tagMatchRules: tagMatchRules
