@@ -4,6 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: bankjob
+    dt.owner: cloud-team
   name: bankjob
 spec:
   replicas: 1
@@ -25,5 +26,5 @@ spec:
           - name: DT_TAGS
             value: "product=bankjob"
           - name: DT_CUSTOM_PROP
-            value: "SERVICE_TYPE=BACKEND"
+            value: "SERVICE_TYPE=BACKEND, owner=cloud-team"
 status: {}
