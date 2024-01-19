@@ -1,29 +1,23 @@
 pipeline {
   agent {
-    label 'kubectl'
-  }
-  environment {
-    APP_NAME = "bankjob"
+    label 'jenkins-slave'
   }
   stages {
-    stage('DT Deploy Event') {
+    stage('Update Deployment and Service specification') {
       steps {
-        echo "run container curl"
-        container("jenkins-slave") {
-          //API to dynatrace here
-          echo "push deployment event here"
-        }
-      }
-    }
-    stage('Deploy New Version') {
-      steps {
-        echo "run container kubectl"
         container('kubectl') {
-          // kubectl apply here
-          sh "kubectl -n dtdemo-usecase get all"
+          echo "update deployment"
+          echo "${env.BRANCH_NAME}"
         }
       }
     }
-    
+    stage('Deploy to staging namespace') {
+      steps {
+        checkout scm
+        container('kubectl') {
+          sh "kubectl get all"
+        }
+      }
+    }
   }
 }
