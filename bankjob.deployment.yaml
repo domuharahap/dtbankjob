@@ -17,6 +17,7 @@ spec:
       creationTimestamp: null
       labels:
         app: bankjob
+        app.kubernetes.io/version: 3.0
     spec:
       containers:
       - image: domuharahap/bankjob:3
@@ -27,4 +28,8 @@ spec:
             value: "app=bankjob"
           - name: DT_CUSTOM_PROP
             value: "SERVICE_TYPE=BACKEND, owner=cloud-team"
+          - name: DT_RELEASE_VERSION
+            valueFrom:
+              fieldRef:
+                 fieldPAth: metadata.labels['app.kubernetes.io.version']
 status: {}
