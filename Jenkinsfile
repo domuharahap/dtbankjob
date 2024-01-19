@@ -42,7 +42,7 @@ pipeline {
             [key:"gitcommit", value: "${GIT_COMMIT}"],
             [key:"change-request", value: "CR-x"],
             [key:"dt.event.deployment.remediation_action_link", value: "https://no.remediation.url.com"],
-            [key:"dt.event.is_rootcause_relevant", value: true]
+            [key:"dt.event.is_rootcause_relevant", value: "true"]
 
 					],
 					envId: 'Dynatrace Environment',
