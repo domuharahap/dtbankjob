@@ -31,5 +31,5 @@ spec:
           - name: DT_RELEASE_VERSION
             valueFrom:
               fieldRef:
-                 fieldPAth: metadata.labels['app.kubernetes.io.version']
+                 fieldPath: metadata.labels['app.kubernetes.io.version']
 status: {}
