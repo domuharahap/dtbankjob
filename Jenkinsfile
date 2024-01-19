@@ -8,6 +8,7 @@ pipeline {
         container('kubectl') {
           echo "update deployment"
           echo "${env.BRANCH_NAME}"
+          sh 'printenv'
         }
       }
     }
