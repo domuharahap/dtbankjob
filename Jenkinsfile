@@ -5,7 +5,7 @@ def tagMatchRules = [
     ],
     tags : [
       [context: 'ENVIRONMENT', key: 'app', value: 'bankjob'],
-      [context: 'CONTEXTLESS', key: 'environment', value: 'dev']
+      [context: 'CONTEXTLESS', key: 'environment', value: 'bankjob']
     ]
   ]
 ]
