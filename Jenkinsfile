@@ -25,7 +25,7 @@ pipeline {
         script {
           sh "cp -f bankjob_deployment.template bankjob_deployment.yaml"
           sh "sed -i 's#BANKJOB_BUILD_IMAGE_VERSION#${bankjobImageVersion}#g' bankjob_deployment.yaml"
-          sh "more bankjob_deployment.yaml"
+          //sh "more bankjob_deployment.yaml"
         }
         container('kubectl') {
           echo "Delete pods"
@@ -43,7 +43,7 @@ pipeline {
         createDynatraceDeploymentEvent(
 					customProperties: [
             [key: "dt.event.deployment.name", value:"${JOB_NAME}"],
-            [key:"dt.event.deployment.version", value: "1.0"],
+            [key:"dt.event.deployment.version", value: "${bankjobImageVersion}"],
             [key:"dt.event.deployment.release_stage", value: "${GIT_BRANCH}" ],
             [key:"dt.event.deployment.release_product", value: "${JOB_NAME}"],
             [key:"dt.event.deployment.release_build_version", value: "${currentBuild.number}"],
@@ -68,7 +68,7 @@ pipeline {
       steps {
         container('kubectl') {
           echo "apply new pods"
-          sh "more bankjob_deployment.yaml"
+          //sh "more bankjob_deployment.yaml"
           sh "kubectl -n bankjob apply -f bankjob_deployment.yaml"
         }
       }
