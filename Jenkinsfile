@@ -14,9 +14,19 @@ pipeline {
   agent {
     label 'jenkins-slave'
   }
+
+  environment {
+        bankjobImageVersion = "domuharahap/bankjob:${params.deployment_version}"
+    }
+
   stages {
     stage('Prepare environment') {
       steps {
+        script {
+          sh "cp -f bankjob_deployment.template bankjob_deployment.yaml"
+          sh "sed -i 's#BANKJOB_BUILD_IMAGE_VERSION#${bankjobImageVersion}#g' bankjob_deployment.yaml"
+          sh "more bankjob_deployment.yaml"
+        }
         container('kubectl') {
           echo "Delete pods"
           sh "kubectl -n bankjob delete -f bankjob.deployment.yaml"
@@ -58,7 +68,8 @@ pipeline {
       steps {
         container('kubectl') {
           echo "apply new pods"
-          sh "kubectl -n bankjob apply -f bankjob.deployment.yaml"
+          sh "more bankjob_deployment.yaml"
+          sh "kubectl -n bankjob apply -f bankjob_deployment.yaml"
         }
       }
     }
