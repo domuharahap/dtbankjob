@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/version: 1.0.1
     spec:
       containers:
-      - image: domuharahap/bankjob:3
+      - image: domuharahap/bankjob:3.0
         name: bankjob
         resources: {}
         env:
