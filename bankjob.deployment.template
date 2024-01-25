@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bankjob
+    dt.owner: cloud-team
+  name: bankjob
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bankjob
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bankjob
+        app.kubernetes.io/version: 1.0.1
+    spec:
+      containers:
+      - image: BANKJOB_BUILD_IMAGE_VERSION
+        name: bankjob
+        resources: {}
+        env:
+          - name: DT_TAGS
+            value: "app=bankjob"
+          - name: DT_CUSTOM_PROP
+            value: "SERVICE_TYPE=BACKEND, owner=cloud-team"
+          - name: DT_RELEASE_VERSION
+            valueFrom:
+              fieldRef:
+                 fieldPath: metadata.labels['app.kubernetes.io.version']
+status: {}
