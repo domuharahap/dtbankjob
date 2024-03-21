@@ -40,27 +40,25 @@ pipeline {
           echo "Send event to dynatrace"
           echo "${env.GIT_COMMIT}"
         }
-        createDynatraceDeploymentEvent(
-					customProperties: [
-            [key: "dt.event.deployment.name", value:"${JOB_NAME}"],
-            [key:"dt.event.deployment.version", value: "${bankjobImageVersion}"],
-            [key:"dt.event.deployment.release_stage", value: "${GIT_BRANCH}" ],
-            [key:"dt.event.deployment.release_product", value: "${JOB_NAME}"],
-            [key:"dt.event.deployment.release_build_version", value: "${currentBuild.number}"],
-            [key:"approver", value: "Dynatrace Team"],
-            [key: "dt.event.deployment.project​", value: "${JOB_NAME}"],
-            [key:"dt.event.deployment.ci_back_link", value: "${JOB_URL}"],
-            [key:"gitcommit", value: "${GIT_COMMIT}"],
-            [key:"change-request", value: "N/A"],
-            [key:"dt.event.deployment.remediation_action_link", value: "N/A"],
-            [key:"dt.event.is_rootcause_relevant", value: "true"]
-
-					],
-					envId: 'Dynatrace Environment',
-					tagMatchRules: tagMatchRules
-				) {
-					// some block
-				}
+        createDynatraceDeploymentEvent(customProperties: [
+	            [key: "dt.event.deployment.name", value:"${JOB_NAME}"],
+	            [key:"dt.event.deployment.version", value: "${bankjobImageVersion}"],
+	            [key:"dt.event.deployment.release_stage", value: "${GIT_BRANCH}" ],
+	            [key:"dt.event.deployment.release_product", value: "${JOB_NAME}"],
+	            [key:"dt.event.deployment.release_build_version", value: "${currentBuild.number}"],
+	            [key:"approver", value: "Dynatrace Team"],
+	            [key: "dt.event.deployment.project​", value: "${JOB_NAME}"],
+	            [key:"dt.event.deployment.ci_back_link", value: "${JOB_URL}"],
+	            [key:"gitcommit", value: "${GIT_COMMIT}"],
+	            [key:"change-request", value: "N/A"],
+	            [key:"dt.event.deployment.remediation_action_link", value: "N/A"],
+	            [key:"dt.event.is_rootcause_relevant", value: "true"]
+		],
+		envId: 'Dynatrace Environment',
+		tagMatchRules: tagMatchRules
+	) {
+		// some block
+	}
       }
     }
 
@@ -127,7 +125,6 @@ pipeline {
            }"""
            echo "${POST_DATA_STAGE}"
            sh "curl -X POST ${DYNATRACE_API_URL} -H 'Content-Type: application/cloudevent+json' -H 'Authorization: Api-Token ${env.DT_TOKEN}' -d '${POST_DATA_STAGE}'"
-
 
         }
       }
