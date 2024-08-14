@@ -1,7 +1,9 @@
 pipeline {
   agent {
-    label 'jenkins-slave'
-//    label 'kubegit'
+    kubernetes {
+      inheritFrom 'jenkins-slave'
+      //    label 'kubegit'
+    }
   }
   stages {
     stage('Update Deployment and Service specification') {
