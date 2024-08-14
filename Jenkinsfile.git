@@ -17,7 +17,7 @@ pipeline {
       steps {
         //checkout scm
         container('kubectl') {
-          sh "kubectl get all"
+          sh "kubectl get all -n prod"
         }
       }
     }
