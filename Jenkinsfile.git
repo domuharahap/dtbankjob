@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Deploy to staging namespace') {
       steps {
-        checkout scm
+        //checkout scm
         container('kubectl') {
           sh "kubectl get all"
         }
