@@ -5,7 +5,7 @@ def tagMatchRules = [
     ],
     tags : [
       [context: 'ENVIRONMENT', key: 'app', value: 'bankjob'],
-      [context: 'CONTEXTLESS', key: 'environment', value: 'prod']
+      [context: 'CONTEXTLESS', key: 'environment', value: 'bankjob']
     ]
   ]
 ]
@@ -29,7 +29,7 @@ pipeline {
         }
         container('kubectl') {
           echo "Delete pods"
-          sh "kubectl -n prod delete -f bankjob.deployment.yaml"
+          sh "kubectl -n bankjob delete -f bankjob.deployment.yaml"
         }
       }
     }
@@ -46,7 +46,7 @@ pipeline {
             DYNATRACE_API_TOKEN="${env.DT_TOKEN}"
             POST_DATA="""{
                 "endTime": 1,
-                "entitySelector": "type(SERVICE),tags(app:bankjob),tags(environment:prod)",
+                "entitySelector": "type(SERVICE),tags(app:bankjob),tags(environment:bankjob)",
                 "eventType": "CUSTOM_DEPLOYMENT",
                 "properties": {
                     "specversion" : "1.0",
@@ -77,7 +77,7 @@ pipeline {
         container('kubectl') {
           echo "apply new pods"
           //sh "more bankjob_deployment.yaml"
-          sh "kubectl -n prod apply -f bankjob.deployment.yaml"
+          sh "kubectl -n bankjob apply -f bankjob.deployment.yaml"
         }
       }
     }
