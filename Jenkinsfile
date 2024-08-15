@@ -50,11 +50,15 @@ pipeline {
                 "eventType": "CUSTOM_DEPLOYMENT",
                 "properties": {
                     "deployment.name" : "Bankjob new release",
-                    "deployment.version": "${bankjobImageVersion}"
+                    "deployment.version": "${bankjobImageVersion}",
+                    "deployment.source": "http://jenkins", 
+                    "deployme nt.release_stage": "Prod",
+                    "deployment.release_product": "Bankjob",
+                    "deployment.project": "Bankjob",
+                    "deployment.remediation_action_link": "http://remediation",
+                    "is_rootcause_relevant": true
                 },
-                "startTime": 1,
-                "timeout": 1,
-                "title": "string"
+                "title": "Deployment"
             }"""
 
             echo "${POST_DATA}"
