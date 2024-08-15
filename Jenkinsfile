@@ -49,15 +49,8 @@ pipeline {
                 "entitySelector": "type(SERVICE),tags(app:bankjob),tags(environment:bankjob)",
                 "eventType": "CUSTOM_DEPLOYMENT",
                 "properties": {
-                    "specversion" : "1.0",
-                    "source": "jenkins",
-                    "buildNumber": "${currentBuild.number}",
-                    "buildTimestamp" : "${env.BUILD_TIMESTAMP}",
-                    "status" : "${currentBuild.currentResult}",
-                    "buildDuration" : "${currentBuild.duration}",
-                    "buildUserId" : "${BUILD_USER_ID}",
-                    "buildUserName" : "${BUILD_USER}",
-                    "buildResult" : "${currentBuild.result}"
+                    "deployment.name" : "Bankjob new release",
+                    "deployment.version": "${bankjobImageVersion}"
                 },
                 "startTime": 1,
                 "timeout": 1,
