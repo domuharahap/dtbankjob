@@ -111,7 +111,7 @@ pipeline {
             }"""
 
            echo "${POST_DATA}"
-           sh "curl -X POST ${DYNATRACE_API_URL} -H 'Content-Type: application/cloudevent+json' -H 'Authorization: Api-Token ${env.DT_TOKEN}' -d '${POST_DATA}'"
+           sh "curl -X POST ${DYNATRACE_API_URL} -H 'accept: application/json; charset=utf-8' -H 'Content-Type: application/cloudevent+json' -H 'Authorization: Api-Token ${env.DT_TOKEN}' -d '${POST_DATA}'"
 
            echo "update stagetype event"
            POST_DATA_STAGE="""{
@@ -130,7 +130,7 @@ pipeline {
                }
            }"""
            echo "${POST_DATA_STAGE}"
-           sh "curl -X POST ${DYNATRACE_API_URL} -H 'Content-Type: application/cloudevent+json' -H 'Authorization: Api-Token ${env.DT_TOKEN}' -d '${POST_DATA_STAGE}'"
+           sh "curl -X POST ${DYNATRACE_API_URL} -H 'accept: application/json; charset=utf-8' -H 'Content-Type: application/cloudevent+json' -H 'Authorization: Api-Token ${env.DT_TOKEN}' -d '${POST_DATA_STAGE}'"
 
         }
       }
