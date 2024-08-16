@@ -45,18 +45,17 @@ pipeline {
             DYNATRACE_API_URL="${env.DT_ACCOUNTID}/api/v2/events/ingest"
             DYNATRACE_API_TOKEN="${env.DT_TOKEN}"
             POST_DATA="""{
-                "endTime": 1,
-                "entitySelector": "type(SERVICE),tags(app:bankjob),tags(environment:bankjob)",
+                "entitySelector": "type(SERVICE),tag(app:bankjob)",
                 "eventType": "CUSTOM_DEPLOYMENT",
                 "properties": {
-                    "deployment.name" : "Bankjob new release",
-                    "deployment.version": "${bankjobImageVersion}",
-                    "deployment.source": "http://jenkins", 
-                    "deployme nt.release_stage": "Prod",
-                    "deployment.release_product": "Bankjob",
-                    "deployment.project": "Bankjob",
-                    "deployment.remediation_action_link": "http://remediation",
-                    "is_rootcause_relevant": true
+                  "dt.event.deployment.name": "Bankjob release",
+                  "deployment.version": "1",
+                  "deployment.source": "http://jenkins", 
+                  "deployme nt.release_stage": "Prod",
+                  "deployment.release_product": "Bankjob",
+                  "deployment.project": "Bankjob",
+                  "deployment.remediation_action_link": "http://remediation",
+                  "is_rootcause_relevant": true
                 },
                 "title": "Deployment"
             }"""
