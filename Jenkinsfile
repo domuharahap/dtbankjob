@@ -48,13 +48,16 @@ pipeline {
                 "entitySelector": "type(SERVICE),tag(app:bankjob)",
                 "eventType": "CUSTOM_DEPLOYMENT",
                 "properties": {
-                  "dt.event.deployment.name": "Bankjob release",
-                  "deployment.version": "1",
+                  "deployment.name": "Bankjob release",
+                  "deployment.version": "${bankjobImageVersion}",
+                  "deployment.release_version" : "${currentBuild.number}",
                   "deployment.source": "http://jenkins", 
-                  "deployme nt.release_stage": "Prod",
-                  "deployment.release_product": "Bankjob",
-                  "deployment.project": "Bankjob",
+                  "deployment.release_stage": "${GIT_BRANCH}",
+                  "deployment.release_product": "${JOB_NAME}",
+                  "deployment.project_name": "Bankjob",
                   "deployment.remediation_action_link": "http://remediation",
+                  "deployment.approver" : "john.doe@dynatrace.com",
+                  "git.commit" : "${GIT_COMMIT}",
                   "is_rootcause_relevant": true
                 },
                 "title": "Deployment"
