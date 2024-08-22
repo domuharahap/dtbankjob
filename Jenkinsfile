@@ -25,6 +25,7 @@ pipeline {
         script {
           sh "cp -f bankjob.deployment.template bankjob.deployment.yaml"
           sh "sed -i 's#BANKJOB_BUILD_IMAGE_VERSION#${bankjobImageVersion}#g' bankjob.deployment.yaml"
+          sh "sed -i 's#JENKINS_RELEASE_VERSION#${currentBuild.number}#g' bankjob.deployment.yaml"
           //sh "more bankjob_deployment.yaml"
         }
         container('kubectl') {
