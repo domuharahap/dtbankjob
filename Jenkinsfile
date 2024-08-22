@@ -60,7 +60,7 @@ pipeline {
                   "git.commit" : "${GIT_COMMIT}",
                   "is_rootcause_relevant": true
                 },
-                "title": "Deployment"
+                "title": "Deployment - ${currentBuild.number}"
             }"""
 
             echo "${POST_DATA}"
