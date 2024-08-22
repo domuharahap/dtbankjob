@@ -28,6 +28,8 @@ spec:
             value: "app=bankjob"
           - name: DT_CUSTOM_PROP
             value: "SERVICE_TYPE=BACKEND, owner=cloud-team"
+          - name: DT_CUSTOM_PROP
+            value: "ENVIRONMENT=BUILD_NUMBER=JENKINS_RELEASE_VERSION"  
           - name: DT_RELEASE_VERSION
             valueFrom:
               fieldRef:
